@@ -8,8 +8,7 @@ else
   cd ~/actions-runner
   echo "Installing Runner!" #Create folder and download zip
   echo "Downloading Zip"
-  response=$(curl -s "https://api.github.com/repos/actions/runner/releases/latest")
-  version=$(echo "$response" | grep -oP '"tag_name": v"\K[^"]*'| sed 's/^v//')
+  version=$(curl -s "https://api.github.com/repos/actions/runner/releases/latest" | grep -oP '"tag_name": "\K[^"]*' | sed 's/^v//')
   url=$(echo "$response" | grep -oP '"browser_download_url": "\K[^"]*' | grep 'linux-x64.tar.gz')
   
   if [[ -z "${version}" ]]; then
