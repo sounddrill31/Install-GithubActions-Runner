@@ -8,7 +8,7 @@ else
   cd ~/actions-runner
   echo "Installing Runner!" #Create folder and download zip
   echo "Downloading Zip"
-  version=$(curl -sI -o /dev/null https://github.com/actions/runner/releases/latest | grep -o 'location: .*' | head -n 1 | awk -F / '{print $NF}' | cut -d '?' -f 1)
+  version=$(curl -sI https://github.com/actions/runner/releases/latest | grep -o 'location: .*' | head -n 1 | awk -F / '{print $NF}' | cut -d '?' -f 1)
   
   if [[ -z "${version}" ]]; then
     echo "Failed to retrieve the version number"
