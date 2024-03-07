@@ -21,12 +21,16 @@ else
 fi
 
 # Check if the alias already exists in the file
-if grep -Fxq "alias gh-runner-configure='bash ~/actions-runner/configure.sh'" $filename
+if grep -Fxq "gh-actions-configure() {
+  config.sh --url="$1" --token="$2"
+}" $filename
 then
     echo "Alias for gh-runner-configure already exists in file. Skipping..."
 else
     # Add the alias for gh-runner-configure to the file
-    echo "alias gh-runner-configure='bash ~/actions-runner/configure.sh'" >> $filename
+    echo "gh-actions-configure() {
+  config.sh --url="$1" --token="$2"
+}" >> $filename
     echo "Alias for gh-runner-configure added to file."
 fi
 
