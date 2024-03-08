@@ -21,28 +21,24 @@ else
 fi
 
 # Check if the alias already exists in the file
-if grep -Fxq "gh-actions-configure() {
-    ~/actions-runner/config.sh "$@"
-}" $filename
+if grep -Fxq "alias gh-runner-configure='bash ~/actions-runner/config.sh'" $filename
 then
     echo "Alias for gh-runner-configure already exists in file. Skipping..."
 else
     # Add the alias for gh-runner-configure to the file
-    echo "gh-actions-configure() {
-    ~/actions-runner/config.sh "$@"
-}" >> $filename
+    echo "alias gh-runner-configure='bash ~/actions-runner/config.sh'" >> $filename
     echo "Alias for gh-runner-configure added to file."
-fi
+fi # Login interactively 
 
 # Check if the alias already exists in the file
-if grep -Fxq "alias gh-runner-start='bash ~/actions-runner/run.sh'" $filename
+if grep -Fxq "alias gh-runner-start='bash ~/actions-runner/scripts/start-tmux.sh'" $filename
 then
     echo "Alias for gh-runner-start already exists in file. Skipping..."
 else
     # Add the alias for gh-runner-start to the file
-    echo "alias gh-runner-start='bash ~/actions-runner/run.sh'" >> $filename
+    echo "alias gh-runner-start='bash ~/actions-runner/scripts/start-tmux.sh'" >> $filename
     echo "Alias for gh-runner-start added to file."
 fi
-
+source $filename
 # Succeed
 exit 0
