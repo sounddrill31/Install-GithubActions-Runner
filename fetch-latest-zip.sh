@@ -24,7 +24,7 @@ else
   fi
   
   echo "Extracting Zip"
-  tar -xvfC ~/actions-runner ~/actions-runner/actions-runner-linux-x64.tar.gz
+  tar xzf ~/actions-runner/actions-runner-linux-x64.tar.gz -C ~/actions-runner
   echo "Removing Leftovers"
   rm -rf ~/actions-runner/actions-runner-linux-x64.tar.gz # Extract package and remove leftovers
 fi
