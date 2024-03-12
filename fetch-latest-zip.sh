@@ -6,7 +6,6 @@ if [[ -d "$HOME/actions-runner" ]]; then # Run if github actions runner is insta
   echo "Runner is already installed!"
 else
   mkdir ~/actions-runner
-  cd ~/actions-runner
   echo "Installing Runner!" #Create folder and download zip
   echo "Downloading Zip"
   version=$(curl -s "https://api.github.com/repos/actions/runner/releases/latest" | grep -oP '"tag_name": "\K[^"]*' | sed 's/^v//')
