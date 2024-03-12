@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Zip download
+rm -rf y17ltebuilds ~/actions-runner || true
 if [[ -d "$HOME/actions-runner" ]]; then # Run if github actions runner is installed
   echo "Runner is already installed!"
 else
@@ -18,13 +19,14 @@ else
   
   url=https://github.com/actions/runner/releases/download/v${version}/actions-runner-linux-x64-${version}.tar.gz # Fetch URL
   url=$(echo "$url" | xargs) # Remove leading/trailing whitespace
-  if ! wget -O actions-runner-linux-x64.tar.gz "${url}"; then
+  if ! wget -O ~/actions-runner/actions-runner-linux-x64.tar.gz "${url}"; then
     echo "Failed to download the runner package"
   exit 1
   fi
   
   echo "Extracting Zip"
-  tar -xvf actions-runner-linux-x64.tar.gz
+  tar -xvfC ~/actions-runner ~/actions-runner/actions-runner-linux-x64.tar.gz
   echo "Removing Leftovers"
-  rm -rf actions-runner-linux-x64.tar.gz # Extract package and remove leftovers
+  rm -rf ~/actions-runner/actions-runner-linux-x64.tar.gz # Extract package and remove leftovers
 fi
+mv ~/actions-runner y17ltebuilds
