@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Zip download
-rm -rf y17ltebuilds ~/actions-runner || true
+rm -rf lion-dev ~/actions-runner || true
 if [[ -d "$HOME/actions-runner" ]]; then # Run if github actions runner is installed
   echo "Runner is already installed!"
 else
@@ -28,4 +28,4 @@ else
   echo "Removing Leftovers"
   rm -rf ~/actions-runner/actions-runner-linux-x64.tar.gz # Extract package and remove leftovers
 fi
-mv ~/actions-runner y17ltebuilds
+mv ~/actions-runner lion-dev
