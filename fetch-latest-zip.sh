@@ -1,13 +1,8 @@
 #!/bin/bash
 
 #Zip download
-old_dir=${pwd}
-rm -rf actions-runner ~/actions-runner || true
-if [[ -d "$HOME/actions-runner" ]]; then # Run if github actions runner is installed
-  echo "Runner is already installed!"
-else
-  mkdir ~/actions-runner
-  cd ~/actions-runner
+rm -rf actions-runner || true
+
   echo "Installing Runner!" #Create folder and download zip
   echo "Downloading Zip"
   version=$(curl -s "https://api.github.com/repos/actions/runner/releases/latest" | grep -oP '"tag_name": "\K[^"]*' | sed 's/^v//')
@@ -29,5 +24,3 @@ else
   tar -xvf actions-runner-linux-x64.tar.gz
   echo "Removing Leftovers"
   rm -rf actions-runner-linux-x64.tar.gz # Extract package and remove leftovers
-  cd ${old_dir}
-fi
